@@ -1,0 +1,45 @@
+{
+  "extends": [
+    "./node_modules/javascript-style-guide/.eslintrc.json"
+  ],
+  "parser": "babel-eslint",
+  "plugins": ["compat"],
+  "rules": {
+    "no-param-reassign": ["error", { "props": false }],
+    "no-underscore-dangle": ["off"],
+    "no-unused-vars": ["warn"],
+    "no-restricted-properties": [2, { "property": "includes", "message": "#includes() will fail in IE 11. Use #indexOf() or #filter()." }],
+    "compat/compat": "error",
+    "no-template-curly-in-string": "warn",
+    "max-len": ["warn", {"code" : 150}],
+    "arrow-body-style": "warn",
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "consistent-return": "warn"
+  },
+  "globals": {
+    "App": true,
+    "Backbone": true,
+    "Marionette": true,
+    "$": true,
+    "_": true,
+    "CardComponent": true,
+    "meli_ga": true,
+    "dataLayer": true,
+    "TweenLite": true,
+    "Power0": true,
+    "Power1": true,
+    "Power2": true,
+    "Power3": true,
+    "MissingDataError": true,
+    "BaseError": true,
+    "RoutingError": true,
+    "GatewayTokenError": true,
+    "NetworkError": true,
+    "FlowError": true,
+    "UncaughtError": true,
+    "html2canvas": true
+  },
+  "env": {
+    "browser": true
+  }
+}

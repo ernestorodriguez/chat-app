@@ -1,9 +1,10 @@
-const express = require('express');
-const demo = require('./../pages/demo');
+import { Router } from 'express';
+import demo from './../pages/demo';
 
-const router = express.Router();
+const router = Router();
+
 
 router.get('/', (req, res) => res.send('Hello World!'));
 router.use('/demo', demo);
 
-module.exports = router;
+export default router;
