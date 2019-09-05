@@ -1,5 +1,8 @@
-const router = require('express').Router();
+import { Router } from 'express';
+import { render } from './controller';
 
-router.get('/', (req, res) => res.send('Hello World! DEMO'));
+const router = Router();
 
-module.exports = router;
+router.get('/', render);
+
+export default router;
