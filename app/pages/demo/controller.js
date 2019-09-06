@@ -8,6 +8,6 @@ exports.render = function render(req, res) {
 
     res.send(template({
         body: body,
-        title: 'Hello World from  the server'
+        title: 'Hello World from the server'
     }));
 };
