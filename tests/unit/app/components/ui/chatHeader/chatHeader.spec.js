@@ -6,20 +6,21 @@ import Adapter from 'enzyme-adapter-react-16'
 
 configure({ adapter: new Adapter() });
 
-describe('component chatInput', () => {
+const params = {
+    title: 'Rob Anderson',
+    subtitle: 'Active in the last 15m',
+    image: {
+        src: '/images/user/rob?small',
+        alt: 'Alternative text'
+    }
+};
+
+describe('component chatHeader', () => {
     it('should render defined elements', () => {
-        const wrapper = shallow(<ChatHeader messageList={[]} />);
+        const wrapper = shallow(<ChatHeader {...params} />);
         expect(wrapper.html()).to.include('class="ui-chat-header"');
     });
     it('should has valid render', () => {
-        const params = {
-            title: 'Rob Anderson',
-            subtitle: 'Active in the last 15m',
-            image: {
-                src: '/images/user/rob?small',
-                alt: 'Alternative text'
-            }
-        };
         const wrapper = shallow(<ChatHeader {...params} />);
         expect(wrapper.html()).to.contain(params.title);
         expect(wrapper.html()).to.contain(params.subtitle);

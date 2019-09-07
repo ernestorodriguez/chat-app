@@ -1,5 +1,5 @@
 import React from 'react';
-const PropTypes = require('prop-types');
+import PropTypes from 'prop-types';
 
 class ChatInput extends React.Component {
     render() {
@@ -16,7 +16,7 @@ class ChatInput extends React.Component {
 }
 
 ChatInput.propTypes = {
-    buttonText: PropTypes.string.required,
+    buttonText: PropTypes.string.isRequired,
 };
 
 

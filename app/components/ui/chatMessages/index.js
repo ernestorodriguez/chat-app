@@ -1,6 +1,6 @@
 import React from 'react';
 import Message from "./chatMessages-message";
-const PropTypes = require('prop-types');
+import PropTypes from 'prop-types';
 
 class ChatMessages extends React.Component {
     render() {
@@ -17,7 +17,7 @@ class ChatMessages extends React.Component {
 }
 
 ChatMessages.propTypes = {
-    messageList: PropTypes.array.required,
+    messageList: PropTypes.array.isRequired,
 };
 
 ChatMessages.defaultProps = {

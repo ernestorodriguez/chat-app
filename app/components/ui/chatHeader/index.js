@@ -1,5 +1,5 @@
 import React from 'react';
-const PropTypes = require('prop-types');
+import PropTypes from 'prop-types';
 
 class ChatHeader extends React.Component {
     render() {
@@ -19,12 +19,12 @@ class ChatHeader extends React.Component {
 }
 
 ChatHeader.propTypes = {
-    title: PropTypes.string.required,
-    subtitle: PropTypes.string.required,
-    image: {
-        src: PropTypes.string.required,
-        alt: PropTypes.string.required,
-    }
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    image: PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired,
+    }),
 };
 
 
