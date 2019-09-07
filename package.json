@@ -4,11 +4,11 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node -r \"@babel/register\" ./index.js",
+    "start-dev": "NODE_ENV=development node -r \"@babel/register\" ./index.js",
     "build": "rm -rf dist && webpack --mode development",
     "watch": "rm -rf dist && webpack --watch --mode development",
     "dist": "rm -rf dist && webpack --mode production",
-    "dev-local": "nodemon --exec babel-node ./index.js",
     "test": "NODE_ENV=test ./node_modules/.bin/istanbul cover --include-all-sources ./node_modules/.bin/_mocha tests/**/*.spec.js -- --require \"@babel/register\" --require\"@babel/polyfill\" ",
     "test:watch": "NODE_ENV=test ./node_modules/.bin/istanbul cover  --include-all-sources ./node_modules/.bin/_mocha tests/**/*.spec.js -- --require \"@babel/register\" --require\"@babel/polyfill\" --watch",
     "coverage": "npm test && open coverage/lcov-report/index.html"
@@ -52,7 +52,6 @@
     "istanbul": "^1.0.0-alpha.2",
     "javascript-style-guide": "^1.0.1",
     "mocha": "^6.2.0",
-    "nodemon": "^1.19.2",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8"
   }
