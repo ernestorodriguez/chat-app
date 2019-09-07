@@ -8,9 +8,11 @@ configure({ adapter: new Adapter() });
 
 
 
-describe('component chatInput', () => {
+describe('component Chat', () => {
     it('should render defined elements', () => {
-        const chat = new Chat({});
+        const chat = new Chat({
+            title: 'Rob Anderson',
+        });
         const ChatView = chat.render();
         const wrapper = shallow(ChatView);
 

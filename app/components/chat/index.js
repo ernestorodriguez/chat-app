@@ -15,7 +15,7 @@ class ChatComponent {
         this.messagesData = {
             messageList: [],
         };
-        this.imputData = {
+        this.inputData = {
             buttonText: 'Send'
         };
     }

@@ -6,13 +6,13 @@ import ChatInput from '../ui/chatInput/index';
 
 class View extends React.Component {
     render() {
-        const { headerData, messagesData, imputData } = this.props;
+        const { headerData, messagesData, inputData } = this.props;
 
         return (
             <div className={'chat-component'}>
                 <ChatHeader {...headerData} />
                 <ChatMessages {...messagesData}/>
-                <ChatInput {...imputData}/>
+                <ChatInput {...inputData}/>
             </div>
         );
     }
