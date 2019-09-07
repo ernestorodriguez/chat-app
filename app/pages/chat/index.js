@@ -25,7 +25,8 @@ router.get('/', (req, res) => {
 
     res.send(template({
         body: render,
-        title: 'Hello World from the server'
+        title: 'Hello World from the server',
+        pageId: 'chat',
     }));
 });
 

@@ -7,7 +7,6 @@ class View extends React.Component {
             <div>
                 {chat.render()}
                 <script dangerouslySetInnerHTML={ {__html: ` window.__PRELOADED_STATE__ = ${JSON.stringify({ model })}`}} />
-                <script src={'chat.js'} />
             </div>
         );
     }

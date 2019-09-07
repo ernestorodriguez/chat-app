@@ -10,6 +10,24 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.(s*)css$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name(file) {
+                                const bundleName = file.match(/\/(\w+)\/\w+\./)[1];
+
+                                return `${bundleName}.css`;
+                            },
+                        }
+                    },
+                    'extract-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     }
