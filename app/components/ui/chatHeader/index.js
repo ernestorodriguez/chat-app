@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 class ChatHeader extends React.Component {
     render() {
         const { title, subtitle, image } = this.props;
+
         return (
             <div className={'ui-chat-header'}>
                 <div className={'ui-chat-header__image'}>

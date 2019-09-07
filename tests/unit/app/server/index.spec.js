@@ -4,6 +4,6 @@ import { Router } from 'express';
 
 describe('Server', () => {
     it('must be a router', () => {
-        expect(router.constructor).to.be.equals(Router.constructor)
-    })
+        expect(router.constructor).to.be.equals(Router.constructor);
+    });
 });

@@ -5,6 +5,9 @@
   "private": true,
   "scripts": {
     "start": "node ./index.js",
+    "build": "rm -rf dist && webpack --mode development",
+    "watch": "rm -rf dist && webpack --watch --mode development",
+    "dist": "rm -rf dist && webpack --mode production",
     "dev-local": "nodemon --exec babel-node ./index.js",
     "test": "NODE_ENV=test ./node_modules/.bin/istanbul cover --include-all-sources ./node_modules/.bin/_mocha tests/**/*.spec.js -- --require \"@babel/register\" --require\"@babel/polyfill\" ",
     "test:watch": "NODE_ENV=test ./node_modules/.bin/istanbul cover  --include-all-sources ./node_modules/.bin/_mocha tests/**/*.spec.js -- --require \"@babel/register\" --require\"@babel/polyfill\" --watch",
@@ -23,6 +26,7 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
+    "babel-loader": "^8.0.6",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
@@ -50,6 +54,6 @@
     "mocha": "^6.2.0",
     "nodemon": "^1.19.2",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.8"
   }
 }

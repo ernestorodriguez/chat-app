@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import React from 'react';
 import  ChatHeader from '../../../../../../app/components/ui/chatHeader';
 import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16'
+import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
@@ -18,10 +18,12 @@ const params = {
 describe('component chatHeader', () => {
     it('should render defined elements', () => {
         const wrapper = shallow(<ChatHeader {...params} />);
+
         expect(wrapper.html()).to.include('class="ui-chat-header"');
     });
     it('should has valid render', () => {
         const wrapper = shallow(<ChatHeader {...params} />);
+
         expect(wrapper.html()).to.contain(params.title);
         expect(wrapper.html()).to.contain(params.subtitle);
         expect(wrapper.html()).to.contain(params.image.src);

@@ -1,13 +1,14 @@
-import template from '../../components/layout';
 import React from 'react';
 import View from  './view';
-import { renderToString } from "react-dom/server";
+import ChatComponent from '../../components/chat/index';
 
-exports.render = function render(req, res) {
-    const body =  renderToString(<View />);
+export default function render(model) {
+    const config = {
+        chat: new ChatComponent({
+            title: 'Rob Anderson',
+        }),
+        model
+    };
 
-    res.send(template({
-        body: body,
-        title: 'Hello World from the server'
-    }));
-};
+    return  <View {...config}/>;
+}

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 class ChatInput extends React.Component {
     render() {
         const { buttonText, placeHolderText } = this.props;
+
         return (
             <div className={'ui-chat-input'}>
                 <form className={'ui-chat-input__form'} action="/">

@@ -1,14 +1,13 @@
 import React from 'react';
-
 class View extends React.Component {
     render() {
+        const { chat, model } = this.props;
+
         return (
             <div>
-                <ul></ul>
-                <form action="">
-                    <input id="m" autoComplete="off" />
-                    <button>Send</button>
-                </form>
+                {chat.render()}
+                <script dangerouslySetInnerHTML={ {__html: ` window.__PRELOADED_STATE__ = ${JSON.stringify({ model })}`}} />
+                <script src={'chat.js'} />
             </div>
         );
     }

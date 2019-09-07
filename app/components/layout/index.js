@@ -1,13 +1,12 @@
-module.exports = ({ body, title }) => {
-    return `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>${title}</title>
-      </head>
-      <body>
-        <div id="root">${body}</div>
-      </body>
-    </html>
-  `;
-};
+module.exports = ({ body, title }) => `
+        <!DOCTYPE html>
+            <html>
+                <head>
+                    <title>${title}</title>
+                </head>
+                <body>
+                    <div id="root-app">${body}</div>
+                </body>
+                
+        </html>
+    `;
