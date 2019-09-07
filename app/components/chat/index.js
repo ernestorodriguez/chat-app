@@ -3,21 +3,12 @@ import View from './view';
 
 
 class ChatComponent {
-    constructor({ title }) {
-        this.headerData = {
-            title,
-            subtitle: 'asdasd',
-            image: {
-                src: 'asdasd',
-                alt: '',
-            }
-        };
+    constructor({ header, messages, input}) {
+        this.headerData = header;
         this.messagesData = {
-            messageList: [],
+            messageList: messages,
         };
-        this.inputData = {
-            buttonText: 'Send'
-        };
+        this.inputData = input;
     }
     render() {
         return <View {...this} />;

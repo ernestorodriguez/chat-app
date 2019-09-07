@@ -7,7 +7,20 @@ const router = Router();
 
 router.get('/', (req, res) => {
     const render = renderToString(controller({
-        foo: 'bar',
+        user: {
+            name: 'Rob Anderson',
+            lastTimeActive: 'Active in the last 15m',
+            avatar: 'https://placeimg.com/100/100/tech'
+        },
+        messages: [
+            { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', own: false },
+            { text: 'Hi, I need help with the pricing', own: true },
+            { text: 'Happy to help you!\n What do you like to know?', own: false },
+        ],
+        pageContext: {
+            actionText: 'Send',
+            cta: 'Type a message..'
+        }
     }));
 
     res.send(template({

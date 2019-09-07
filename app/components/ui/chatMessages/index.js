@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class ChatMessages extends React.Component {
     render() {
         const { messageList } = this.props;
-        const messages = messageList.map((messageData) => <Message {...messageData} />);
+        const messages = messageList.map((messageData, index) => <Message key={index} {...messageData} />);
 
         return (
             <div className={'ui-chat-messages'}>

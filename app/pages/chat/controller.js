@@ -5,7 +5,19 @@ import ChatComponent from '../../components/chat/index';
 export default function render(model) {
     const config = {
         chat: new ChatComponent({
-            title: 'Rob Anderson',
+            header: {
+                title: model.user.name,
+                subtitle: model.user.lastTimeActive,
+                image: {
+                    src: model.user.avatar,
+                    alt: '',
+                }
+            },
+            messages: model.messages,
+            input: {
+                buttonText: model.pageContext.actionText,
+                placeHolderText: model.pageContext.cta,
+            }
         }),
         model
     };
