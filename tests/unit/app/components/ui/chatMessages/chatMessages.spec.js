@@ -12,7 +12,7 @@ describe('component chatMessages', () => {
         const wrapper = shallow(<ChatMessages messageList={[]} />);
         expect(wrapper.html()).to.include('class="ui-chat-messages"');
     });
-    it('should define defaults props', () => {
+    it('should has valid render', () => {
         const params = {
             messageList: [
                 { text: 'First Message', own: false },

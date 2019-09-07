@@ -7,9 +7,11 @@ class ChatMessages extends React.Component {
         const { messageList } = this.props;
         const messages = messageList.map((messageData) => <Message {...messageData} />);
         return (
-            <ul className={'ui-chat-messages'}>
-                { messages }
-            </ul>
+            <div className={'ui-chat-messages'}>
+                <ul className={'ui-chat-messages__container'}>
+                    { messages }
+                </ul>
+            </div>
         );
     }
 }
