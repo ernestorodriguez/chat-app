@@ -3,7 +3,10 @@ import React from 'react';
 class View extends React.Component {
     render() {
         return (
-           <h1>Awesome Chat between Laura and Rob </h1>
+            <div className={'demo-page'}>
+                <iframe className={'demo-iFrame demo-iFrame--right'} src="/chat/rob" />
+                <iframe className={'demo-iFrame demo-iFrame--left'} src="/chat/laura" />
+            </div>
         );
     }
 }

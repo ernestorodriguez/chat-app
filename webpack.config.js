@@ -1,5 +1,6 @@
 module.exports = {
     entry: {
+        demo: './app/client/demo.js',
         chat: './app/client/chat.js',
         vendor: 'react-dom'
     },

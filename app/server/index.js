@@ -4,8 +4,7 @@ import chat from './../pages/chat';
 
 const router = Router();
 
-
-router.get('/', chat);
 router.use('/demo', demo);
+router.use('/chat', chat);
 
 export default router;

@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server';
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/:userId/', (req, res) => {
     const render = renderToString(controller({
         user: {
             name: 'Rob Anderson',
@@ -22,7 +22,6 @@ router.get('/', (req, res) => {
             { text: 'Just now. Seen', type: 'status' },
         ],
         pageContext: {
-            actionText: 'Send',
             cta: 'Type a message...'
         }
     }));
