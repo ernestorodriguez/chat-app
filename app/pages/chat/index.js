@@ -13,19 +13,23 @@ router.get('/', (req, res) => {
             avatar: 'https://placeimg.com/100/100/tech'
         },
         messages: [
-            { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', own: false },
-            { text: 'Hi, I need help with the pricing', own: true },
-            { text: 'Happy to help you!\n What do you like to know?', own: false },
+            { text: 'September 9', type: 'system' },
+            { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
+            { text: 'September 10', type: 'system' },
+            { text: 'Hi, I need help with the pricing', type: 'my' },
+            { text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
+            { text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
+            { text: 'Just now. Seen', type: 'status' },
         ],
         pageContext: {
             actionText: 'Send',
-            cta: 'Type a message..'
+            cta: 'Type a message...'
         }
     }));
 
     res.send(template({
         body: render,
-        title: 'Hello World from the server',
+        title: 'Chat with Rob Anderson',
         pageId: 'chat',
     }));
 });

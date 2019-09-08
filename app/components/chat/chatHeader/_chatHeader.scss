@@ -1,0 +1,38 @@
+.chat-header {
+  padding: 20px;
+  background-color: $orange-100;
+  box-shadow: 0 0 4px $gray-40;
+  position: relative;
+}
+.chat-header__container {
+
+  display: table;
+  width: 100%;
+}
+
+.chat-header__image,
+.chat-header__info {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.chat-header__image {
+  width: 50px;
+}
+
+.chat-header__image-wrapper {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.chat-header__info-title {
+  color: white;
+  font-size: 1em;
+}
+
+.chat-header__info-subtitle {
+  color: $white-transparent-70;
+  font-size: 0.8em;
+}

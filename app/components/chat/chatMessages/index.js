@@ -8,8 +8,8 @@ class ChatMessages extends React.Component {
         const messages = messageList.map((messageData, index) => <Message key={index} {...messageData} />);
 
         return (
-            <div className={'ui-chat-messages'}>
-                <ul className={'ui-chat-messages__container'}>
+            <div className={'chat-messages'}>
+                <ul className={'chat-messages__container'}>
                     { messages }
                 </ul>
             </div>

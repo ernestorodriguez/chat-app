@@ -1,0 +1,13 @@
+@import '../helpers/variables';
+@import '../base/normalize';
+@import '../base/main';
+@import '../base/typography';
+
+body {
+  background-color: $gray-70;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}

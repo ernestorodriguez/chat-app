@@ -15,7 +15,6 @@ export default function render(model) {
             },
             messages: model.messages,
             input: {
-                buttonText: model.pageContext.actionText,
                 placeHolderText: model.pageContext.cta,
             }
         }),

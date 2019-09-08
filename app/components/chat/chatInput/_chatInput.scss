@@ -1,0 +1,20 @@
+.chat-input {
+  background: white;
+  position: relative;
+  box-shadow: 0 0 2px $gray-40;
+}
+
+.chat-input__text-input {
+  border:none;
+  padding: 18px 28px;
+  width: 100%;
+  color: $gray-70;
+  font-size: .9em;
+  &::placeholder {
+    color: $gray-30;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
