@@ -3,7 +3,6 @@
  * client js for page
  */
 import '../pages/chat/styles.scss';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import render from  '../pages/chat/controller';
 

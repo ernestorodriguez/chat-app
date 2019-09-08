@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import React from 'react';
-import  ChatHeader from '../../../../../../app/components/ui/chatHeader';
+import  ChatHeader from '../../../../../../app/components/chat/chatHeader/index';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -19,7 +19,7 @@ describe('component chatHeader', () => {
     it('should render defined elements', () => {
         const wrapper = shallow(<ChatHeader {...params} />);
 
-        expect(wrapper.html()).to.include('class="ui-chat-header"');
+        expect(wrapper.html()).to.include('class="chat-header"');
     });
     it('should has valid render', () => {
         const wrapper = shallow(<ChatHeader {...params} />);

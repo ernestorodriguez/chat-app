@@ -1,0 +1,18 @@
+@import 'chatHeader/chatHeader';
+@import 'chatInput/chatInput';
+@import 'chatMessages/chatMessages';
+
+.chat-component {
+  max-width: 370px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+}
+
+.chat-component__container {
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 1px 2px 24px #666;
+}

@@ -8,6 +8,7 @@ module.exports = ({ body, title, pageId }) => `
             </head>
             <body>
                 <div id="root-app">${body}</div>
+                <script src="vendor.js"></script>
                 <script src="${pageId}.js"></script>
             </body>
         </html>

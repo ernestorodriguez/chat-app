@@ -1,7 +1,7 @@
 import React from 'react';
-import ChatHeader from '../ui/chatHeader/index';
-import ChatMessages from '../ui/chatMessages/index';
-import ChatInput from '../ui/chatInput/index';
+import ChatHeader from './chatHeader/index';
+import ChatMessages from './chatMessages/index';
+import ChatInput from './chatInput/index';
 
 
 class View extends React.Component {
@@ -10,9 +10,11 @@ class View extends React.Component {
 
         return (
             <div className={'chat-component'}>
-                <ChatHeader {...headerData} />
-                <ChatMessages {...messagesData}/>
-                <ChatInput {...inputData}/>
+                <div className={'chat-component__container'}>
+                    <ChatHeader {...headerData} />
+                    <ChatMessages {...messagesData}/>
+                    <ChatInput {...inputData}/>
+                </div>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 module.exports = {
     entry: {
-        chat: './app/client/chat.js'
+        chat: './app/client/chat.js',
+        vendor: 'react-dom'
     },
     module: {
         rules: [
