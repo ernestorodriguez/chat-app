@@ -17,27 +17,10 @@
     "consistent-return": "warn"
   },
   "globals": {
-    "App": true,
-    "Backbone": true,
-    "Marionette": true,
-    "$": true,
-    "_": true,
-    "CardComponent": true,
-    "meli_ga": true,
-    "dataLayer": true,
-    "TweenLite": true,
-    "Power0": true,
-    "Power1": true,
-    "Power2": true,
-    "Power3": true,
-    "MissingDataError": true,
-    "BaseError": true,
-    "RoutingError": true,
-    "GatewayTokenError": true,
-    "NetworkError": true,
-    "FlowError": true,
-    "UncaughtError": true,
-    "html2canvas": true
+    "describe": true,
+    "it": true,
+    "after": true,
+    "before": true
   },
   "env": {
     "browser": true

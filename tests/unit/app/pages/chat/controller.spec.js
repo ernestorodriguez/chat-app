@@ -8,19 +8,37 @@ configure({ adapter: new Adapter() });
 describe('Chat Page controller', () => {
     it('mus call send with correct params', () => {
         const wrapper = shallow(controller({
-            user: {
-                name: 'Rob Anderson',
-                lastTimeActive: 'Active in the last 15m',
-                avatar: 'https://placeimg.com/100/100/tech'
+            model: {
+                from: {
+                    id: 'laura',
+                    name: 'Laura Rodriguez',
+                    lastTimeConnected: 123456789,
+                    avatar: 'https://placeimg.com/100/100/tech'
+                },
+                users: [{
+                    id: 'rob',
+                    name: 'Rob Anderson',
+                    lastTimeConnected: 123456789,
+                    avatar: 'https://placeimg.com/100/100/tech'
+                }],
+                messages: [],
+                pageContext: {
+                    cta: 'Type a message...'
+                }
             },
-            messages: [
-                { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', own: false },
-                { text: 'Hi, I need help with the pricing', own: true },
-                { text: 'Happy to help you!\n What do you like to know?', own: false },
-            ],
-            pageContext: {
-                actionText: 'Send',
-                cta: 'Type a message..'
+            chat: {
+                header: {
+                    title: 'Rob Anderson',
+                    subtitle: 'Active in the last 30 Minutes',
+                    image: {
+                        src: 'https://placeimg.com/100/100/tech',
+                        alt: '',
+                    }
+                },
+                messages: [],
+                input: {
+                    placeHolderText: 'Type a message...',
+                }
             }
         }));
 
