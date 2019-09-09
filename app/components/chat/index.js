@@ -3,7 +3,8 @@ import View from './view';
 
 
 class ChatComponent {
-    constructor({ header, messages, input}) {
+    constructor({ header, messages, input}, controller) {
+        this.controller = controller;
         this.headerData = header;
         this.messagesData = {
             messageList: messages,
