@@ -3,17 +3,31 @@ import server from './app/server';
 import express from 'express';
 import IO from 'socket.io';
 import HTTP from 'http';
-
-
+import KvsService from './services/kvsService';
 
 const App = express();
 const http = HTTP.createServer(App);
 const port = 3000;
 const io = IO(http);
+const kvs = new KvsService();
+const room = 'laura - rob';
+const history = kvs.get('laura - rob');
 
-io.on('connection', function(socket){
-    socket.on('chat message', function(msg){
-        io.emit('chat message', msg);
+io.on('connection', function(socket) {
+
+    socket.join(room);
+
+    socket.on('chat message', (id, users, message) => {
+        io.to(room).emit('chat message', message);
+        history.push(message);
+    });
+
+    socket.on('chat writing', (id) => {
+        io.to(room).emit('chat writing', id);
+    });
+
+    socket.on('chat stop-writing', (id) => {
+        io.to(room).emit('chat stop-writing', id);
     });
 });
 

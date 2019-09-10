@@ -6,6 +6,7 @@ import ChatController from '../../../lib/chat/ChatController';
 import ChatRoom from '../../../lib/chat/ChatRoom';
 import User from '../../../lib/chat/User';
 
+
 const users = {
     rob: new User({
         id: 'rob',
@@ -24,32 +25,7 @@ const users = {
 const chatMock = function(data) {
     return {
         from: users[data.userId],
-        history: [
-            {
-                text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.',
-                author: 'rob',
-                date: new Date('September 1, 2019 09:24:00').toString(),
-                seen: new Date('September 1, 2019 09:24:00').toString(),
-            },
-            {
-                text: 'Hi, I need help with the pricing',
-                author: 'laura',
-                date: new Date('September 9, 2019 10:10:00').toString(),
-                seen: new Date('September 9, 2019 10:11:00').toString(),
-            },
-            {
-                text: 'Happy to help you!\n What do you like to know?',
-                author: 'rob',
-                date: new Date('September 9, 2019 10:12:00').toString(),
-                seen: new Date('September 9, 2019 10:12:00').toString(),
-            },
-            {
-                text: 'I would like to know how I have to spent in this, can you guide me through this?',
-                author: 'laura',
-                date: new Date('September 9, 2019 10:13:00').toString(),
-                seen: new Date('September 9, 2019 10:13:00').toString(),
-            },
-        ],
+        history: data.history,
         users: [
             users[data.targetUserId],
         ]

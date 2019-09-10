@@ -24,9 +24,19 @@ class ChatInput extends React.Component {
     }
 
     handleChange(event) {
+        if (this.changeTimeout) {
+            clearTimeout(this.changeTimeout);
+        }
+
         this.setState({
             inputValue: event.target.value,
         });
+
+        this.props.changeAction();
+
+        this.changeTimeout = setTimeout(() => {
+            this.props.idleAction();
+        }, 2000);
     }
 
     render() {

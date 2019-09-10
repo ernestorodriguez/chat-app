@@ -14,10 +14,19 @@ class View extends React.Component {
 
         bindUpdate((data) => { this.updateState(data); });
     }
+
     inputSubmitHandler(event) {
         const callBack = this.props.controller.handleSubmit.bind(this.props.controller);
 
         callBack(event);
+    }
+
+    inputChangeAction() {
+        this.props.controller.handleInputChange.bind(this.props.controller)();
+    }
+
+    handleInputIdle() {
+        this.props.controller.handleInputIdle.bind(this.props.controller)();
     }
 
     render() {
@@ -28,7 +37,12 @@ class View extends React.Component {
                 <div className={'chat-component__container'}>
                     <ChatHeader {...headerData} />
                     <ChatMessages {...messagesData}/>
-                    <ChatInput submitAction={(event) => this.inputSubmitHandler(event)} {...inputData}/>
+                    <ChatInput
+                        submitAction={(event) => this.inputSubmitHandler(event)}
+                        changeAction={(event) => this.inputChangeAction(event)}
+                        idleAction={(event) => this.handleInputIdle(event)}
+                        {...inputData}
+                    />
                 </div>
             </div>
         );
