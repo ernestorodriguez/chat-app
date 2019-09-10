@@ -9,6 +9,6 @@ import render from  '../pages/chat/controller';
 const { model } = window.__PRELOADED_STATE__;
 
 ReactDOM.hydrate(
-    render(model),
+    render(model, io()),
     document.getElementById('root-app'),
 );

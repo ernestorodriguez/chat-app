@@ -51,7 +51,8 @@
   }
 }
 
-.chat-messages__message--my + .chat-messages__message--my {
+.chat-messages__message--my + .chat-messages__message--my,
+.chat-messages__message--theirs + .chat-messages__message--theirs {
   margin-top: -12px;
   padding-top: 0;
 

@@ -7,6 +7,7 @@ class View extends React.Component {
             <div>
                 {chat.render()}
                 <script dangerouslySetInnerHTML={ {__html: ` window.__PRELOADED_STATE__ = ${JSON.stringify({ model })}`}} />
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" />
             </div>
         );
     }

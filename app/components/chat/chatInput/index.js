@@ -12,6 +12,9 @@ class ChatInput extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (this.state.inputValue === '') {
+            return;
+        }
 
         this.props.submitAction(this.state.inputValue);
 

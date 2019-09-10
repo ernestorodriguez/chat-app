@@ -9,12 +9,15 @@ class View extends React.Component {
         this.setState(data);
     }
 
+    componentDidMount() {
+        const bindUpdate = this.props.controller.bindUpdate.bind(this.props.controller);
+
+        bindUpdate((data) => { this.updateState(data); });
+    }
     inputSubmitHandler(event) {
         const callBack = this.props.controller.handleSubmit.bind(this.props.controller);
 
-        callBack(event, (data) => {
-            this.updateState(data);
-        });
+        callBack(event);
     }
 
     render() {

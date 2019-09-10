@@ -56,8 +56,8 @@ const chatMock = function(data) {
     };
 };
 
-export default function render(data) {
-    const chatRoom = new ChatRoom(chatMock(data));
+export default function render(data, socket) {
+    const chatRoom = new ChatRoom(chatMock(data), socket);
     const controller = new ChatController(chatRoom);
     const model = controller.render();
     const config = {
