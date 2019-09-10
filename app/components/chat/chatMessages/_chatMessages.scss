@@ -2,7 +2,19 @@
 .chat-messages {
   max-height: 450px;
   overflow-y: auto;
+
+  * {
+    overflow-anchor: none;
+  }
 }
+
+.chat-messages::after {
+  content: '';
+  display: block;
+  overflow-anchor: auto;
+  height: 1px;
+}
+
 
 .chat-messages__container {
   padding: 0;
@@ -37,6 +49,13 @@
     border-bottom: 0;
     margin-top: -5px;
   }
+}
+
+.chat-messages__message--my + .chat-messages__message--my {
+  margin-top: -12px;
+  padding-top: 0;
+
+  &:after { border: none; }
 }
 
 .chat-messages__message--my {

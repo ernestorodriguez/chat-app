@@ -4,25 +4,6 @@ import ChatView from '../../../../lib/chat/ChatView';
 import ChatRoom from '../../../../lib/chat/ChatRoom';
 import User from '../../../../lib/chat/User';
 
-const getMonthName = (index) => {
-    const months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ];
-
-    return months[index];
-};
-
 describe('Chat Acceptance test ', () => {
     it('Laura start a new chat with Rob', () => {
         const lastTimeConnected = Date.now() - 60000 * 30;
@@ -266,7 +247,6 @@ describe('Chat Acceptance test ', () => {
                     { text: 'Hi, I need help with the pricing', type: 'theirs' },
                     { text: 'Happy to help you!\n What do you like to know?', type: 'my' },
                     { text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
-                    { text: 'Just now. Seen', type: 'status' },
                 ],
             },
             chat: {
@@ -285,7 +265,6 @@ describe('Chat Acceptance test ', () => {
                     { text: 'Hi, I need help with the pricing', type: 'theirs' },
                     { text: 'Happy to help you!\n What do you like to know?', type: 'my' },
                     { text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
-                    { text: 'Just now. Seen', type: 'status' },
                 ],
                 input: {
                     placeHolderText: 'Type a message...',
