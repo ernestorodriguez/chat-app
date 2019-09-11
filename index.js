@@ -17,8 +17,8 @@ io.on('connection', function(socket) {
 
     socket.join(room);
 
-    socket.on('chat message', (id, users, message) => {
-        io.to(room).emit('chat message', message);
+    socket.on('chat message', (id, message, users) => {
+        io.to(room).emit('chat message', id, message);
         history.push(message);
     });
 

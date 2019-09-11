@@ -1,8 +1,12 @@
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import spies from 'chai-spies';
 import ChatController from '../../../../lib/chat/ChatController';
 import ChatView from '../../../../lib/chat/ChatView';
 import ChatRoom from '../../../../lib/chat/ChatRoom';
 import User from '../../../../lib/chat/User';
+import _ from 'underscore';
+
+chai.use(spies);
 
 const history = [
     {
@@ -222,35 +226,44 @@ describe('Chat Acceptance test ', () => {
         });
     });
 
-    it('Rob start a new chat with Laura and send her a message', (done) => {
+    it('Rob start a new chat with Laura and send her a message', () => {
         let messageSend = {};
         const eventStore = {};
+        const callback = chai.spy();
+
+        const socketMock = {
+            on(event, callback) {
+                eventStore[event] = callback;
+            },
+            emit(event, fromId, message, usersTarget ) {
+                eventStore[event](fromId, message);
+                messageSend = { event, fromId, usersTarget, message };
+            },
+        };
+
+        chai.spy.on(socketMock, ['on', 'emit']);
+
         const chatRoom = new ChatRoom({
             from: rob,
             users: [
                 laura,
             ],
             history: [],
-        }, {
-            on(event, callback) {
-                eventStore[event] = callback;
-            },
-            emit(event, fromId, usersTarget, message) {
-                eventStore[event](message);
-                messageSend = { event, fromId, usersTarget, message };
-            },
-        });
+        }, socketMock);
 
-        chatRoom.bindUpdate((data) => {
-            expect(data).to.be.deep.equals({
-                messages: [
-                    { type: 'my', text: 'message to Laura' },
-                    { type: 'status', text: 'Just now. Seen' }
-                ]
-            });
-            done();
-        });
+        const expectedCallback = {
+            messages: [
+                { type: 'my', text: 'message to Laura' },
+                { type: 'status', text: 'Just now. Seen' }
+            ]
+        };
+
+        chatRoom.bindUpdate(callback);
+        chatRoom.handleInputChange();
         chatRoom.handleSubmit('message to Laura');
+
+        expect(callback).to.have.been.called(1);
+        expect(callback).to.first.been.with(expectedCallback);
         expect(messageSend).to.be.deep.equals({
             event: 'chat message',
             fromId: 'rob',
@@ -262,5 +275,62 @@ describe('Chat Acceptance test ', () => {
                 text: 'message to Laura',
             }
         });
+        expect(socketMock.on).to.have.been.called(3);
+        expect(socketMock.on).to.first.been.called.with('chat message');
+        expect(socketMock.on).to.second.been.called.with('chat writing');
+        expect(socketMock.on).to.third.been.called.with('chat stop-writing');
+        expect(socketMock.emit).to.been.called(2);
+    });
+
+    it('Rob start a new chat with Laura and she send him a message', () => {
+        let messageSend = {};
+        const eventStore = {};
+        const callsBackData = [];
+        const callback = chai.spy((callData) => callsBackData.push(JSON.stringify(callData)));
+
+        const socketMock = {
+            on(event, callback) {
+                eventStore[event] = callback;
+            },
+            emit(event, fromId, message, usersTarget ) {
+                eventStore[event](fromId, message);
+                messageSend = { event, fromId, usersTarget, message };
+            },
+        };
+
+        chai.spy.on(socketMock, ['on', 'emit']);
+
+        const chatRoom = new ChatRoom({
+            from: rob,
+            users: [
+                laura,
+            ],
+            history: [],
+        }, socketMock);
+
+        const expectedCallback2 = {
+            messages: [
+                { type: 'theirs', text: 'message to Rob' },
+            ]
+        };
+
+        const expectedCallback1 = {
+            messages: [
+                { type: 'theirs', text: '• • •' },
+            ]
+        };
+
+        chatRoom.bindUpdate(callback);
+        eventStore['chat writing'](laura.id);
+        eventStore['chat message'](laura.id, {
+            text: 'message to Rob',
+            author: 'laura',
+            date: null,
+            seen: new Date('September 9, 2019 10:14:00').toString(),
+        });
+
+        console.log(callsBackData);
+
+        expect(callsBackData).to.be.deep.equals([JSON.stringify(expectedCallback1), JSON.stringify(expectedCallback2)]);
     });
 });
