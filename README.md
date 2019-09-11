@@ -41,9 +41,9 @@ To start continues testing
 $ npm run test:watch
 ```
 
-#App available at 
+# App available at 
 http://localhost:3000/
 
-#disable mock messages
+# disable mock messages
 go to `services/kvsService` and comment history messages
 
