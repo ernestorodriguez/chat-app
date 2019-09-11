@@ -1,6 +1,12 @@
+@keyframes message {
+  0% {opacity: 0;}
+  50% { opacity: 1; transform: translate(10px) }
+  100% {transform: translate(0) }
+}
+
 
 .chat-messages {
-  max-height: 450px;
+  height: 435px;
   overflow-y: auto;
 
   * {
@@ -18,27 +24,29 @@
 
 .chat-messages__container {
   padding: 0;
-  margin: 0 34px 34px;
+  margin: 0 $gutter-xl $gutter-xl;
 }
 
 .chat-messages__message {
   list-style: none;
+  clear: both;
 }
 
 .ui-chat-messages__container {
-  margin: 35px;
+  margin: $gutter-xl;
 }
 
 .chat-messages__message {
-  font-size: 0.8em;
-  margin: 16px 0 0;
-  border-radius: 4px;
+  font-size: $font-size-s;
+  margin: $gutter-base 0 0;
+  border-radius: $border-radius;
   position: relative;
 }
 
 .chat-messages__message--my,
 .chat-messages__message--theirs {
-  padding: 22px 16px;
+  padding: $gutter-l $gutter-base;
+
   &:after {
     content: '';
     position: absolute;
@@ -47,58 +55,63 @@
     height: 0;
     border: 20px solid transparent;
     border-bottom: 0;
-    margin-top: -5px;
+    margin-top: -$gutter-xs;
   }
-}
-
-.chat-messages__message--my + .chat-messages__message--my,
-.chat-messages__message--theirs + .chat-messages__message--theirs {
-  margin-top: -12px;
-  padding-top: 0;
-
-  &:after { border: none; }
 }
 
 .chat-messages__message--my {
   color: white;
   background-color: $orange-100;
-  margin-right: 10px;
+  margin-right: $gutter-m;
 
   &:after {
     border-left-color: $orange-100;
     border-right: 0;
     right: 0;
-    margin-right: -10px;
+    margin-right: -$gutter-m;
   }
 }
 
 .chat-messages__message--theirs {
   color: $gray-70;
   background: $gray-20;
-  margin-left: 10px;
+  margin-left: $gutter-m;
 
   &:after {
     border-right-color: $gray-20;
     border-left: 0;
     left: 0;
-    margin-left: -10px;
+    margin-left: -$gutter-m;
   }
 }
 
 .chat-messages__message--status,
 .chat-messages__message--system {
   color: $gray-40;
-  font-size: 0.8em;
+  font-size: $font-size-s;
   margin: 0;
 }
 
 .chat-messages__message--system {
-  padding-top: 28px;
+  padding-top: $gutter-xl;
   text-align: center;
 }
 
 .chat-messages__message--status {
   padding: 0;
   text-align: right;
-  margin-top: 4px;
+  margin-top: $gutter-xs;
+}
+
+.chat-messages__message--my + .chat-messages__message--theirs,
+.chat-messages__message--theirs + .chat-messages__message--my {
+  animation-name: message;
+  animation-duration: 1s;
+}
+.chat-messages__message--my + .chat-messages__message--my,
+.chat-messages__message--theirs + .chat-messages__message--theirs {
+  margin-top: -$gutter-m;
+  padding-top: 0;
+
+  &:after { border: none; }
 }

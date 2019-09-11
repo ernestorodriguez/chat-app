@@ -1,7 +1,7 @@
 .chat-header {
-  padding: 20px;
+  padding: $gutter-l;
   background-color: $orange-100;
-  box-shadow: 0 0 4px $gray-40;
+  box-shadow: $box-shadow-s;
   position: relative;
   z-index: 1;
 }
@@ -30,10 +30,10 @@
 
 .chat-header__info-title {
   color: white;
-  font-size: 1em;
+  font-size: $font-size-base;
 }
 
 .chat-header__info-subtitle {
   color: $white-transparent-70;
-  font-size: 0.8em;
+  font-size: $font-size-s;
 }

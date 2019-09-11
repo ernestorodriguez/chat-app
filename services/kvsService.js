@@ -29,8 +29,7 @@ const KVS = {
 
 class KvsService {
     constructor() {
-        //this.kvs = KVS;
-        this.kvs = {['laura - rob']: []};
+        this.kvs = KVS;
     }
 
     get(key) {
