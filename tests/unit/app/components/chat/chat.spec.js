@@ -3,14 +3,13 @@ import React from 'react';
 import Chat from '../../../../../app/components/chat';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ChatRoom from "../../../../../lib/chat/ChatRoom";
+import ChatRoom from '../../../../../lib/chat/ChatRoom';
 
 configure({ adapter: new Adapter() });
 
 const header  = {};
 const messages = [];
 const input = {};
-
 
 describe('component Chat', () => {
     it('should render defined elements', () => {

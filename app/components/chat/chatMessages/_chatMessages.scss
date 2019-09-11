@@ -1,6 +1,12 @@
-@keyframes message {
+@keyframes message-theirs {
   0% {opacity: 0;}
   50% { opacity: 1; transform: translate(10px) }
+  100% {transform: translate(0) }
+}
+
+@keyframes message-my {
+  0% {opacity: 0;}
+  50% { opacity: 1; transform: translate(-10px) }
   100% {transform: translate(0) }
 }
 
@@ -8,19 +14,7 @@
 .chat-messages {
   height: 435px;
   overflow-y: auto;
-
-  * {
-    overflow-anchor: none;
-  }
 }
-
-.chat-messages::after {
-  content: '';
-  display: block;
-  overflow-anchor: auto;
-  height: 1px;
-}
-
 
 .chat-messages__container {
   padding: 0;
@@ -41,6 +35,7 @@
   margin: $gutter-base 0 0;
   border-radius: $border-radius;
   position: relative;
+  animation-duration: 1s;
 }
 
 .chat-messages__message--my,
@@ -103,15 +98,10 @@
   margin-top: $gutter-xs;
 }
 
-.chat-messages__message--my + .chat-messages__message--theirs,
-.chat-messages__message--theirs + .chat-messages__message--my {
-  animation-name: message;
-  animation-duration: 1s;
+.chat-messages__message--theirs {
+  animation-name: message-theirs;
 }
-.chat-messages__message--my + .chat-messages__message--my,
-.chat-messages__message--theirs + .chat-messages__message--theirs {
-  margin-top: -$gutter-m;
-  padding-top: 0;
 
-  &:after { border: none; }
+.chat-messages__message--my {
+  animation-name: message-my;
 }

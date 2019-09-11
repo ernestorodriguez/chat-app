@@ -9,7 +9,12 @@ configure({ adapter: new Adapter() });
 
 describe('component chatMessages', () => {
     it('should render defined elements', () => {
-        const wrapper = shallow(<ChatMessages messageList={[]} />);
+        global.TweenLite = {
+            to() {}
+        };
+        const view = <ChatMessages messageList={[]} />;
+
+        const wrapper = shallow(view);
 
         expect(wrapper.html()).to.include('class="chat-messages"');
     });

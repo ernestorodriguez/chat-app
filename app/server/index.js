@@ -4,7 +4,10 @@ import chat from './../pages/chat';
 
 const router = Router();
 
-router.use('/demo', demo);
 router.use('/chat', chat);
+router.use('/demo', demo);
+router.get('/', (req, res) => {
+    res.redirect(301, '/demo');
+});
 
 export default router;
