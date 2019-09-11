@@ -4,7 +4,6 @@ import ChatController from '../../../../lib/chat/ChatController';
 import ChatView from '../../../../lib/chat/ChatView';
 import ChatRoom from '../../../../lib/chat/ChatRoom';
 import User from '../../../../lib/chat/User';
-import _ from 'underscore';
 
 chai.use(spies);
 
@@ -12,29 +11,31 @@ const history = [
     {
         text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.',
         author: 'rob',
-        date: new Date('September 1, 2019 09:24:00').toString(),
-        seen: new Date('September 1, 2019 09:24:00').toString(),
+        date: 1567340640000,
+        seen: 1567340640000,
     },
     {
         text: 'Hi, I need help with the pricing',
         author: 'laura',
-        date: new Date('September 9, 2019 10:10:00').toString(),
-        seen: new Date('September 9, 2019 10:11:00').toString(),
+        date: 1568034600000,
+        seen: 1568034600000,
     },
     {
         text: 'Happy to help you!\n What do you like to know?',
         author: 'rob',
-        date: new Date('September 9, 2019 10:12:00').toString(),
-        seen: new Date('September 9, 2019 10:12:00').toString(),
+        date: 1568034720000,
+        seen: 1568034720000,
     },
     {
         text: 'I would like to know how I have to spent in this, can you guide me through this?',
         author: 'laura',
-        date: new Date('September 9, 2019 10:13:00').toString(),
-        seen: new Date('September 9, 2019 10:13:00').toString(),
+        date: 1568034780000,
+        seen: 1568034780000,
     },
 ];
-const lastTimeConnected = Date.now() - 60000 * 30;
+
+const now = 1568172711052;
+const lastTimeConnected = now - 60000 * 30;
 const rob = new User({
     id: 'rob',
     name: 'Rob Anderson',
@@ -50,6 +51,16 @@ const laura = new User({
 });
 
 describe('Chat Acceptance test ', () => {
+    before(() => {
+        chai.spy.on(Date, ['now'], () => {
+            return now;
+        } );
+    });
+
+    after(() => {
+        chai.spy.restore();
+    });
+
     it('Laura start a new chat with Rob', () => {
         const chatRoom = new ChatRoom({
             from: laura,
@@ -129,13 +140,13 @@ describe('Chat Acceptance test ', () => {
                     cta: 'Type a message...'
                 },
                 messages: [
-                    { text: `September 1`, type: 'system' },
-                    { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
-                    { text: `September 9`, type: 'system' },
-                    { text: 'Hi, I need help with the pricing', type: 'my' },
-                    { text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
-                    { text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
-                    { text: 'Just now. Seen', type: 'status' },
+                    { date: 1567340640000, text: `September 1`, type: 'system'},
+                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
+                    { date: 1568034600000, text: `September 9`, type: 'system' },
+                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'my' },
+                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
+                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
+                    { date: 1568034780000, text: 'Just now. Seen', type: 'status' },
                 ],
             },
             chat: {
@@ -148,13 +159,13 @@ describe('Chat Acceptance test ', () => {
                     }
                 },
                 messages: [
-                    { text: `September 1`, type: 'system' },
-                    { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
-                    { text: `September 9`, type: 'system' },
-                    { text: 'Hi, I need help with the pricing', type: 'my' },
-                    { text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
-                    { text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
-                    { text: 'Just now. Seen', type: 'status' },
+                    { date: 1567340640000, text: `September 1`, type: 'system',  },
+                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
+                    { date: 1568034600000, text: `September 9`, type: 'system' },
+                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'my' },
+                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
+                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
+                    { date: 1568034780000, text: 'Just now. Seen', type: 'status' },
                 ],
                 input: {
                     placeHolderText: 'Type a message...',
@@ -194,12 +205,12 @@ describe('Chat Acceptance test ', () => {
                 },
                 socket: {},
                 messages: [
-                    { text: `September 1`, type: 'system' },
-                    { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'my' },
-                    { text: `September 9`, type: 'system' },
-                    { text: 'Hi, I need help with the pricing', type: 'theirs' },
-                    { text: 'Happy to help you!\n What do you like to know?', type: 'my' },
-                    { text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
+                    { date: 1567340640000, text: `September 1`, type: 'system' },
+                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'my' },
+                    { date: 1568034600000, text: `September 9`, type: 'system' },
+                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'theirs' },
+                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'my' },
+                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
                 ],
             },
             chat: {
@@ -212,12 +223,12 @@ describe('Chat Acceptance test ', () => {
                     }
                 },
                 messages: [
-                    { text: `September 1`, type: 'system' },
-                    { text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'my' },
-                    { text: `September 9`, type: 'system' },
-                    { text: 'Hi, I need help with the pricing', type: 'theirs' },
-                    { text: 'Happy to help you!\n What do you like to know?', type: 'my' },
-                    { text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
+                    { date: 1567340640000, text: `September 1`, type: 'system' },
+                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'my' },
+                    { date: 1568034600000, text: `September 9`, type: 'system' },
+                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'theirs' },
+                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'my' },
+                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
                 ],
                 input: {
                     placeHolderText: 'Type a message...',
@@ -253,13 +264,15 @@ describe('Chat Acceptance test ', () => {
 
         const expectedCallback = {
             messages: [
-                { type: 'my', text: 'message to Laura' },
-                { type: 'status', text: 'Just now. Seen' }
+                { date: 1568172711052, type: 'system', text: 'September 11' },
+                { date: 1568172711052, type: 'my', text: 'message to Laura' },
+                { date: 1568172711052, type: 'status', text: 'Just now. Seen' }
             ]
         };
 
         chatRoom.bindUpdate(callback);
         chatRoom.handleInputChange();
+        chatRoom.handleInputIdle();
         chatRoom.handleSubmit('message to Laura');
 
         expect(callback).to.have.been.called(1);
@@ -270,23 +283,26 @@ describe('Chat Acceptance test ', () => {
             usersTarget: [laura],
             message: {
                 author: 'rob',
-                date: new Date(Date.now()).toString(),
+                date: 1568172711052,
                 seen: null,
                 text: 'message to Laura',
             }
         });
+
         expect(socketMock.on).to.have.been.called(3);
         expect(socketMock.on).to.first.been.called.with('chat message');
         expect(socketMock.on).to.second.been.called.with('chat writing');
         expect(socketMock.on).to.third.been.called.with('chat stop-writing');
-        expect(socketMock.emit).to.been.called(2);
+        expect(socketMock.emit).to.been.called(3);
     });
 
     it('Rob start a new chat with Laura and she send him a message', () => {
         let messageSend = {};
         const eventStore = {};
         const callsBackData = [];
-        const callback = chai.spy((callData) => callsBackData.push(JSON.stringify(callData)));
+        const callback = chai.spy((callData) => {
+            callsBackData.push(JSON.parse(JSON.stringify(callData)));
+        });
 
         const socketMock = {
             on(event, callback) {
@@ -305,32 +321,59 @@ describe('Chat Acceptance test ', () => {
             users: [
                 laura,
             ],
-            history: [],
+            history: [history[2]],
         }, socketMock);
 
-        const expectedCallback2 = {
-            messages: [
-                { type: 'theirs', text: 'message to Rob' },
-            ]
-        };
 
         const expectedCallback1 = {
             messages: [
-                { type: 'theirs', text: '• • •' },
+                { date: 1568034720000, type: 'system', text: `September 9`},
+                { date: 1568034720000, type: 'my', text: 'Happy to help you!\n What do you like to know?' },
+                { date: 1568172711052, type: 'theirs', text: '• • •' },
+            ]
+        };
+
+        const expectedCallback2 = {
+            messages: [
+                { date: 1568034720000, text: `September 9`, type: 'system' },
+                { date: 1568034720000, type: 'my', text: 'Happy to help you!\n What do you like to know?' },
+                { date: 1568034720000, type: 'status', text: 'Just now. Seen' }
+            ]
+        };
+
+        const expectedCallback3 = {
+            messages: [
+                { date: 1568034720000, text: `September 9`, type: 'system' },
+                { date: 1568034720000, type: 'my', text: 'Happy to help you!\n What do you like to know?' },
+                { date: 1568172711052, type: 'theirs', text: '• • •' },
+            ]
+        };
+
+        const expectedCallback4 = {
+            messages: [
+                { date: 1568034720000, text: `September 9`, type: 'system' },
+                { date: 1568034720000, type: 'my', text: 'Happy to help you!\n What do you like to know?' },
+                { date: 1568172711052, text: `September 16`, type: 'system' },
+                { date: 1568639640000, type: 'theirs', text: 'message to Rob' },
             ]
         };
 
         chatRoom.bindUpdate(callback);
         eventStore['chat writing'](laura.id);
+        eventStore['chat stop-writing'](laura.id);
+        eventStore['chat writing'](laura.id);
         eventStore['chat message'](laura.id, {
             text: 'message to Rob',
             author: 'laura',
-            date: null,
-            seen: new Date('September 9, 2019 10:14:00').toString(),
+            date: Date.parse('September 16, 2019 10:14:00'),
+            seen: null,
         });
 
-        console.log(callsBackData);
-
-        expect(callsBackData).to.be.deep.equals([JSON.stringify(expectedCallback1), JSON.stringify(expectedCallback2)]);
+        expect(callsBackData).to.be.deep.equals([
+            expectedCallback1,
+            expectedCallback2,
+            expectedCallback3,
+            expectedCallback4
+        ]);
     });
 });
