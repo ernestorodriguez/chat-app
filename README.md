@@ -1,5 +1,5 @@
 # Chat  - DEMO App
-Chat demo App base on Express and React
+Chat demo App base on Express, socket.io and React
 
 
 1. Install 
