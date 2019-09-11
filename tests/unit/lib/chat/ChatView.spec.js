@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import User from '../../../../lib/chat/User';
-import ChatRoom from '../../../../lib/chat/ChatRoom';
-import ChatView from '../../../../lib/chat/ChatView';
+import Room from '../../../../lib/chat/Room';
+import ChatView from '../../../../lib/chat/Renderer';
 
 
 
@@ -16,7 +16,7 @@ describe('ChatView', () => {
                 avatar: 'https://placeimg.com/100/100/tech'
             });
 
-            const chatRoom = new ChatRoom({
+            const chatRoom = new Room({
                 from: laura,
                 users: [
                     laura,

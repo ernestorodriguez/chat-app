@@ -1,9 +1,10 @@
 import chai, { expect } from 'chai';
 import spies from 'chai-spies';
-import ChatController from '../../../../lib/chat/ChatController';
-import ChatView from '../../../../lib/chat/ChatView';
-import ChatRoom from '../../../../lib/chat/ChatRoom';
+import Chat from '../../../../lib/chat/Chat';
+import ChatView from '../../../../lib/chat/Renderer';
+import Room from '../../../../lib/chat/Room';
 import User from '../../../../lib/chat/User';
+import TargetUser from '../../../../lib/chat/TargetUser';
 
 chai.use(spies);
 
@@ -50,11 +51,23 @@ const laura = new User({
     avatar: 'https://placeimg.com/100/100/tech'
 });
 
+const robTarget = new TargetUser({
+    id: 'rob',
+    name: 'Rob Anderson',
+    lastTimeConnected: lastTimeConnected,
+    avatar: 'https://placeimg.com/100/100/tech'
+});
+
+const lauraTarget = new TargetUser({
+    id: 'laura',
+    name: 'Laura Rodriguez',
+    lastTimeConnected: lastTimeConnected,
+    avatar: 'https://placeimg.com/100/100/tech'
+});
+
 describe('Chat Acceptance test ', () => {
     before(() => {
-        chai.spy.on(Date, ['now'], () => {
-            return now;
-        } );
+        chai.spy.on(Date, ['now'], () => now );
     });
 
     after(() => {
@@ -62,34 +75,49 @@ describe('Chat Acceptance test ', () => {
     });
 
     it('Laura start a new chat with Rob', () => {
-        const chatRoom = new ChatRoom({
+        const chatRoom = new Room({
             from: laura,
             users: [
-                rob,
+                robTarget,
             ],
             history: []
         }, {});
         const view = new ChatView(chatRoom);
-        const controller = new ChatController(chatRoom, view);
+        const chat = new Chat(chatRoom, view);
 
-        expect(controller.render()).to.be.deep.equals({
+        expect(chat.render()).to.be.deep.equals({
             model: {
                 from: {
                     id: 'laura',
                     name: 'Laura Rodriguez',
+                    isWriting: false,
                     lastTimeConnected: lastTimeConnected,
                     avatar: 'https://placeimg.com/100/100/tech'
                 },
-                users: [{
+                targetUsers: [{
                     id: 'rob',
+                    isWriting: false,
                     name: 'Rob Anderson',
                     lastTimeConnected: lastTimeConnected,
                     avatar: 'https://placeimg.com/100/100/tech'
                 }],
                 socket: {},
                 messages: [],
-                pageContext: {
-                    cta: 'Type a message...'
+                users: {
+                    laura: {
+                        id: 'laura',
+                        name: 'Laura Rodriguez',
+                        isWriting: false,
+                        lastTimeConnected: lastTimeConnected,
+                        avatar: 'https://placeimg.com/100/100/tech'
+                    },
+                    rob: {
+                        id: 'rob',
+                        name: 'Rob Anderson',
+                        isWriting: false,
+                        lastTimeConnected: lastTimeConnected,
+                        avatar: 'https://placeimg.com/100/100/tech'
+                    }
                 }
             },
             chat: {
@@ -110,35 +138,50 @@ describe('Chat Acceptance test ', () => {
     });
 
     it('Laura start a new chat with Rob and has previews chats', () => {
-        const chatRoom = new ChatRoom({
+        const chatRoom = new Room({
             from: laura,
             users: [
-                rob,
+                robTarget,
             ],
             history,
         }, {});
 
         const view = new ChatView(chatRoom);
-        const controller = new ChatController(chatRoom, view);
+        const chat = new Chat(chatRoom, view);
 
-        expect(controller.render()).to.be.deep.equals({
+        expect(chat.render()).to.be.deep.equals({
             model: {
                 from: {
                     id: 'laura',
                     name: 'Laura Rodriguez',
+                    isWriting: false,
                     lastTimeConnected: lastTimeConnected,
                     avatar: 'https://placeimg.com/100/100/tech'
                 },
-                users: [{
+                targetUsers: [{
                     id: 'rob',
                     name: 'Rob Anderson',
+                    isWriting: false,
                     lastTimeConnected: lastTimeConnected,
                     avatar: 'https://placeimg.com/100/100/tech'
                 }],
-                socket: {},
-                pageContext: {
-                    cta: 'Type a message...'
+                users: {
+                    laura: {
+                        id: 'laura',
+                        name: 'Laura Rodriguez',
+                        isWriting: false,
+                        lastTimeConnected: lastTimeConnected,
+                        avatar: 'https://placeimg.com/100/100/tech'
+                    },
+                    rob: {
+                        id: 'rob',
+                        name: 'Rob Anderson',
+                        isWriting: false,
+                        lastTimeConnected: lastTimeConnected,
+                        avatar: 'https://placeimg.com/100/100/tech'
+                    }
                 },
+                socket: {},
                 messages: [
                     { date: 1567340640000, text: `September 1`, type: 'system'},
                     { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
@@ -175,33 +218,48 @@ describe('Chat Acceptance test ', () => {
     });
 
     it('Rob start a new chat with Laura and has previews chats', () => {
-        const chatRoom = new ChatRoom({
+        const chatRoom = new Room({
             from: rob,
             users: [
-                laura,
+                lauraTarget,
             ],
             history,
         }, {});
 
         const view = new ChatView(chatRoom);
-        const controller = new ChatController(chatRoom, view);
+        const chat = new Chat(chatRoom, view);
 
-        expect(controller.render()).to.be.deep.equals({
+        expect(chat.render()).to.be.deep.equals({
             model: {
                 from: {
                     id: 'rob',
                     name: 'Rob Anderson',
+                    isWriting: false,
                     lastTimeConnected: lastTimeConnected,
                     avatar: 'https://placeimg.com/100/100/tech'
                 },
-                users: [{
+                targetUsers: [{
                     id: 'laura',
                     name: 'Laura Rodriguez',
+                    isWriting: false,
                     lastTimeConnected: lastTimeConnected,
                     avatar: 'https://placeimg.com/100/100/tech'
                 }],
-                pageContext: {
-                    cta: 'Type a message...'
+                users: {
+                    laura: {
+                        id: 'laura',
+                        name: 'Laura Rodriguez',
+                        isWriting: false,
+                        lastTimeConnected: lastTimeConnected,
+                        avatar: 'https://placeimg.com/100/100/tech'
+                    },
+                    rob: {
+                        id: 'rob',
+                        name: 'Rob Anderson',
+                        isWriting: false,
+                        lastTimeConnected: lastTimeConnected,
+                        avatar: 'https://placeimg.com/100/100/tech'
+                    }
                 },
                 socket: {},
                 messages: [
@@ -254,10 +312,10 @@ describe('Chat Acceptance test ', () => {
 
         chai.spy.on(socketMock, ['on', 'emit']);
 
-        const chatRoom = new ChatRoom({
+        const chatRoom = new Room({
             from: rob,
             users: [
-                laura,
+                lauraTarget,
             ],
             history: [],
         }, socketMock);
@@ -270,10 +328,10 @@ describe('Chat Acceptance test ', () => {
             ]
         };
 
-        chatRoom.bindUpdate(callback);
-        chatRoom.handleInputChange();
-        chatRoom.handleInputIdle();
-        chatRoom.handleSubmit('message to Laura');
+        chatRoom.bindEvents(callback);
+        chatRoom.userIsActive();
+        chatRoom.userIsInactive();
+        chatRoom.sendMessage('message to Laura');
 
         expect(callback).to.have.been.called(1);
         expect(callback).to.first.been.with(expectedCallback);
@@ -316,10 +374,10 @@ describe('Chat Acceptance test ', () => {
 
         chai.spy.on(socketMock, ['on', 'emit']);
 
-        const chatRoom = new ChatRoom({
+        const chatRoom = new Room({
             from: rob,
             users: [
-                laura,
+                lauraTarget,
             ],
             history: [history[2]],
         }, socketMock);
@@ -358,7 +416,7 @@ describe('Chat Acceptance test ', () => {
             ]
         };
 
-        chatRoom.bindUpdate(callback);
+        chatRoom.bindEvents(callback);
         eventStore['chat writing'](laura.id);
         eventStore['chat stop-writing'](laura.id);
         eventStore['chat writing'](laura.id);

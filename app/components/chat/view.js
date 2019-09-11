@@ -10,23 +10,23 @@ class View extends React.Component {
     }
 
     componentDidMount() {
-        const bindUpdate = this.props.controller.bindUpdate.bind(this.props.controller);
+        const bindEvents = this.props.controller.bindEvents.bind(this.props.controller);
 
-        bindUpdate((data) => { this.updateState(data); });
+        bindEvents((data) => { this.updateState(data); });
     }
 
     inputSubmitHandler(event) {
-        const callBack = this.props.controller.handleSubmit.bind(this.props.controller);
+        const callBack = this.props.controller.sendMessage.bind(this.props.controller);
 
         callBack(event);
     }
 
     inputChangeAction() {
-        this.props.controller.handleInputChange.bind(this.props.controller)();
+        this.props.controller.userIsActive.bind(this.props.controller)();
     }
 
     handleInputIdle() {
-        this.props.controller.handleInputIdle.bind(this.props.controller)();
+        this.props.controller.userIsInactive.bind(this.props.controller)();
     }
 
     render() {
