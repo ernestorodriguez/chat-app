@@ -12,6 +12,8 @@ class ChatInput extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        clearTimeout(this.changeTimeout);
+
         if (this.state.inputValue === '') {
             return;
         }

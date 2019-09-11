@@ -10,12 +10,11 @@ const router = Router();
 const kvs = new KvsService();
 
 router.get('/:userId/:targetUserId', (req, res) => {
-    const demoMessages = kvs.get('demoMessages');
     const targetUser = kvs.get('users')[req.params.targetUserId];
     const render = renderToString(chatController({
         user: kvs.get('users')[req.params.userId],
         targetUser: kvs.get('users')[req.params.targetUserId],
-        history: demoMessages ? kvs.get('laura - rob') : [],
+        history: kvs.get('laura - rob'),
     }));
 
     res.send(template({
