@@ -13,7 +13,7 @@ $ npm install
 $ npm run build
 ```
 
-3. 
+3. Start app
 ```bash
 $ npm run start
 ```
@@ -31,7 +31,6 @@ To start server
 $ npm run start-dev
 ```
 
-
 To start continues building
 ```bash
 $ npm run watch
@@ -42,4 +41,9 @@ To start continues testing
 $ npm run test:watch
 ```
 
+#App available at 
+http://localhost:3000/
+
+#enable mock messages
+http://localhost:3000/demo?demo_messages=true
 

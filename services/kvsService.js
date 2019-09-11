@@ -25,6 +25,20 @@ const KVS = {
             seen: Date.parse('September 9, 2019 10:13:00').toString(),
         },
     ],
+    users: {
+        rob: {
+            id: 'rob',
+            name: 'Rob Anderson',
+            lastTimeConnected:  Date.now() - 60000 * 30,
+            avatar: 'https://placeimg.com/100/100/tech'
+        },
+        laura: {
+            id: 'laura',
+            name: 'Laura Rodriguez',
+            lastTimeConnected: Date.now(),
+            avatar: 'https://placeimg.com/100/100/tech'
+        },
+    }
 };
 
 class KvsService {
