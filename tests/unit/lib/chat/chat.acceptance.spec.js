@@ -85,54 +85,18 @@ describe('Chat Acceptance test ', () => {
         const view = new ChatView(chatRoom);
         const chat = new Chat(chatRoom, view);
 
-        expect(chat.render()).to.be.deep.equals({
-            model: {
-                from: {
-                    id: 'laura',
-                    name: 'Laura Rodriguez',
-                    isWriting: false,
-                    lastTimeConnected: lastTimeConnected,
-                    avatar: 'https://placeimg.com/100/100/tech'
-                },
-                targetUsers: [{
-                    id: 'rob',
-                    isWriting: false,
-                    name: 'Rob Anderson',
-                    lastTimeConnected: lastTimeConnected,
-                    avatar: 'https://placeimg.com/100/100/tech'
-                }],
-                socket: {},
-                messages: [],
-                users: {
-                    laura: {
-                        id: 'laura',
-                        name: 'Laura Rodriguez',
-                        isWriting: false,
-                        lastTimeConnected: lastTimeConnected,
-                        avatar: 'https://placeimg.com/100/100/tech'
-                    },
-                    rob: {
-                        id: 'rob',
-                        name: 'Rob Anderson',
-                        isWriting: false,
-                        lastTimeConnected: lastTimeConnected,
-                        avatar: 'https://placeimg.com/100/100/tech'
-                    }
+        expect(chat.render().chat).to.be.deep.equals({
+            header: {
+                title: 'Rob Anderson',
+                subtitle: 'Active in the last 30 Minutes',
+                image: {
+                    src: 'https://placeimg.com/100/100/tech',
+                    alt: '',
                 }
             },
-            chat: {
-                header: {
-                    title: 'Rob Anderson',
-                    subtitle: 'Active in the last 30 Minutes',
-                    image: {
-                        src: 'https://placeimg.com/100/100/tech',
-                        alt: '',
-                    }
-                },
-                messages: [],
-                input: {
-                    placeHolderText: 'Type a message...',
-                }
+            messages: [],
+            input: {
+                placeHolderText: 'Type a message...',
             }
         });
     });
@@ -149,70 +113,26 @@ describe('Chat Acceptance test ', () => {
         const view = new ChatView(chatRoom);
         const chat = new Chat(chatRoom, view);
 
-        expect(chat.render()).to.be.deep.equals({
-            model: {
-                from: {
-                    id: 'laura',
-                    name: 'Laura Rodriguez',
-                    isWriting: false,
-                    lastTimeConnected: lastTimeConnected,
-                    avatar: 'https://placeimg.com/100/100/tech'
-                },
-                targetUsers: [{
-                    id: 'rob',
-                    name: 'Rob Anderson',
-                    isWriting: false,
-                    lastTimeConnected: lastTimeConnected,
-                    avatar: 'https://placeimg.com/100/100/tech'
-                }],
-                users: {
-                    laura: {
-                        id: 'laura',
-                        name: 'Laura Rodriguez',
-                        isWriting: false,
-                        lastTimeConnected: lastTimeConnected,
-                        avatar: 'https://placeimg.com/100/100/tech'
-                    },
-                    rob: {
-                        id: 'rob',
-                        name: 'Rob Anderson',
-                        isWriting: false,
-                        lastTimeConnected: lastTimeConnected,
-                        avatar: 'https://placeimg.com/100/100/tech'
-                    }
-                },
-                socket: {},
-                messages: [
-                    { date: 1567340640000, text: `September 1`, type: 'system'},
-                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
-                    { date: 1568034600000, text: `September 9`, type: 'system' },
-                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'my' },
-                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
-                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
-                    { date: 1568034780000, text: 'Just now. Seen', type: 'status' },
-                ],
-            },
-            chat: {
-                header: {
-                    title: 'Rob Anderson',
-                    subtitle: 'Active in the last 30 Minutes',
-                    image: {
-                        src: 'https://placeimg.com/100/100/tech',
-                        alt: '',
-                    }
-                },
-                messages: [
-                    { date: 1567340640000, text: `September 1`, type: 'system',  },
-                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
-                    { date: 1568034600000, text: `September 9`, type: 'system' },
-                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'my' },
-                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
-                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
-                    { date: 1568034780000, text: 'Just now. Seen', type: 'status' },
-                ],
-                input: {
-                    placeHolderText: 'Type a message...',
+        expect(chat.render().chat).to.be.deep.equals({
+            header: {
+                title: 'Rob Anderson',
+                subtitle: 'Active in the last 30 Minutes',
+                image: {
+                    src: 'https://placeimg.com/100/100/tech',
+                    alt: '',
                 }
+            },
+            messages: [
+                { date: 1567340640000, text: `September 1`, type: 'system',  },
+                { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'theirs' },
+                { date: 1568034600000, text: `September 9`, type: 'system' },
+                { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'my' },
+                { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'theirs' },
+                { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'my' },
+                { date: 1568034780000, text: 'Just now. Seen', type: 'status' },
+            ],
+            input: {
+                placeHolderText: 'Type a message...',
             }
         });
     });
@@ -229,68 +149,25 @@ describe('Chat Acceptance test ', () => {
         const view = new ChatView(chatRoom);
         const chat = new Chat(chatRoom, view);
 
-        expect(chat.render()).to.be.deep.equals({
-            model: {
-                from: {
-                    id: 'rob',
-                    name: 'Rob Anderson',
-                    isWriting: false,
-                    lastTimeConnected: lastTimeConnected,
-                    avatar: 'https://placeimg.com/100/100/tech'
-                },
-                targetUsers: [{
-                    id: 'laura',
-                    name: 'Laura Rodriguez',
-                    isWriting: false,
-                    lastTimeConnected: lastTimeConnected,
-                    avatar: 'https://placeimg.com/100/100/tech'
-                }],
-                users: {
-                    laura: {
-                        id: 'laura',
-                        name: 'Laura Rodriguez',
-                        isWriting: false,
-                        lastTimeConnected: lastTimeConnected,
-                        avatar: 'https://placeimg.com/100/100/tech'
-                    },
-                    rob: {
-                        id: 'rob',
-                        name: 'Rob Anderson',
-                        isWriting: false,
-                        lastTimeConnected: lastTimeConnected,
-                        avatar: 'https://placeimg.com/100/100/tech'
-                    }
-                },
-                socket: {},
-                messages: [
-                    { date: 1567340640000, text: `September 1`, type: 'system' },
-                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'my' },
-                    { date: 1568034600000, text: `September 9`, type: 'system' },
-                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'theirs' },
-                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'my' },
-                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
-                ],
-            },
-            chat: {
-                header: {
-                    title: 'Laura Rodriguez',
-                    subtitle: 'Active in the last 30 Minutes',
-                    image: {
-                        src: 'https://placeimg.com/100/100/tech',
-                        alt: '',
-                    }
-                },
-                messages: [
-                    { date: 1567340640000, text: `September 1`, type: 'system' },
-                    { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'my' },
-                    { date: 1568034600000, text: `September 9`, type: 'system' },
-                    { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'theirs' },
-                    { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'my' },
-                    { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
-                ],
-                input: {
-                    placeHolderText: 'Type a message...',
+        expect(chat.render().chat).to.be.deep.equals({
+            header: {
+                title: 'Laura Rodriguez',
+                subtitle: 'Active in the last 30 Minutes',
+                image: {
+                    src: 'https://placeimg.com/100/100/tech',
+                    alt: '',
                 }
+            },
+            messages: [
+                { date: 1567340640000, text: `September 1`, type: 'system' },
+                { date: 1567340640000, text: 'Welcome!\nPlease let us know if you have any questions about our business solutions.', type: 'my' },
+                { date: 1568034600000, text: `September 9`, type: 'system' },
+                { date: 1568034600000, text: 'Hi, I need help with the pricing', type: 'theirs' },
+                { date: 1568034720000, text: 'Happy to help you!\n What do you like to know?', type: 'my' },
+                { date: 1568034780000, text: 'I would like to know how I have to spent in this, can you guide me through this?', type: 'theirs' },
+            ],
+            input: {
+                placeHolderText: 'Type a message...',
             }
         });
     });
