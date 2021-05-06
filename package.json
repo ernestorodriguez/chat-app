@@ -24,7 +24,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "socket.io": "^2.2.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "extract-loader": "^3.1.0",
